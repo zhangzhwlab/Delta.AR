@@ -13,38 +13,39 @@ Email: zhangzhihua@big.ac.cn
 
 # Example
 
-We will start an example step by step to visualize data in Delta.AR. More help information can access http://deltaar.big.ac.cn/deltaar/pages/help/help.jsp
+We will start an example step by step to visualize data in Delta.AR.
+More help information can access http://deltaar.big.ac.cn/deltaar/pages/help/help.jsp
 
 ##### 1. Get HoloLens Session ID
 
 To start visualization in Delta.AR, you need to lauch HoloLens and get a session id at first. An example Hololens id we get is 2737
 
-![] (https://github.com/zhangzhwlab/Delta.AR/blob/main/WebRoot/images/help/img/1.jpg)
+![](https://github.com/zhangzhwlab/Delta.AR/blob/main/WebRoot/images/help/img/1.jpg)
 
 ##### 2. Open a session in Delta.AR
 
 Open Delta.AR "AR Configure" webpage, input 2737, then click Next
 
-![] (https://github.com/zhangzhwlab/Delta.AR/blob/main/WebRoot/images/help/img/2.jpg)
+![](https://github.com/zhangzhwlab/Delta.AR/blob/main/WebRoot/images/help/img/2.jpg)
 
 ##### 3. Load 3D model and annotation tracks
 
 Select 3dmodel(hg19) as 3D model dataset, the genome location will automatically change. Check Interaction and select GM12878 EZH2 histone ChipSeq data ,then click Next.
 Then a genome view shown as follows.
 
-![] (https://github.com/zhangzhwlab/Delta.AR/blob/main/WebRoot/images/help/img/6.jpg)
+![](https://github.com/zhangzhwlab/Delta.AR/blob/main/WebRoot/images/help/img/6.jpg)
 
 ##### 4. Load or unload track to be shown in HoloLens
 
 Move mouse to the track title, click the down arrow, then a dialog pop up with several menus. To activate a track in HoloLens, check the menu "Show in Delta.AR", such as Interaction. Uncheck the menu "Show in Delta.AR" will activate a track remove from HoloLens view
 
-![] (https://github.com/zhangzhwlab/Delta.AR/blob/main/WebRoot/images/help/img/7.jpg)
+![](https://github.com/zhangzhwlab/Delta.AR/blob/main/WebRoot/images/help/img/7.jpg)
 
 ##### 5. Add more tracks in Genome view
 
 Click "Select Tracks" in Genome view, a track panel will be shown as follows. Users can check mutiple tracks at the same time.
 
-![] (http://deltaar.big.ac.cn/deltaar/images/help/img/8.jpg)
+![](http://deltaar.big.ac.cn/deltaar/images/help/img/8.jpg)
 
 
 
