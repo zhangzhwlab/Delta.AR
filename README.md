@@ -9,7 +9,7 @@ The delta.ar platform was developed and maintained by Beijing Institute of Genom
 
 ### Email
 If you have any question or would like to give us any suggestion/comment or report a bug, please feel free to contact us. 
-Email: zhangzhihua@big.ac.cn
+Email: zhangzhihua AT big.ac.cn
 
 # Example
 
