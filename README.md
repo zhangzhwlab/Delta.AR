@@ -19,4 +19,6 @@ We will start an example step by step to visualize data in Delta.AR.
 
 To start visualization in Delta.AR, you need to lauch HoloLens and get a session id at first. An example Hololens id we get is 2737
 
+![image]()
+
 
