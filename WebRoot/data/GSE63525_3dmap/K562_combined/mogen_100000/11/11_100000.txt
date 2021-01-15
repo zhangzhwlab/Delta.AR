@@ -1,0 +1,17 @@
+NUM = 1
+NBR_OF_CHR = 1
+INTRA_IF_THRESHOLD = 0.03201350508186702
+
+ADJACENT_DIST = 1.5
+CONTACT_DIST = 6.0
+POS_MIN_DIST = 0.2
+NEG_MAX_DIST_INTRA = 50
+POS_MAX_DIST_WEIGHT_FILE = /share/disk1/work/bioinformatics/tangbx/visualization/download_data/pipeline/GSE63525_K562_combined/mogen_100000/11/parameters/pos_max_dist_weight_11_100000.txt
+POS_MIN_DIST_WEIGHT_FILE = /share/disk1/work/bioinformatics/tangbx/visualization/download_data/pipeline/GSE63525_K562_combined/mogen_100000/11/parameters/pos_min_dist_weight_11_100000.txt
+NEG_MIN_DIST_WEIGHT_FILE = /share/disk1/work/bioinformatics/tangbx/visualization/download_data/pipeline/GSE63525_K562_combined/mogen_100000/11/parameters/neg_min_dist_weight_11_100000.txt
+NEG_MAX_DIST_WEIGHT_FILE = /share/disk1/work/bioinformatics/tangbx/visualization/download_data/pipeline/GSE63525_K562_combined/mogen_100000/11/parameters/neg_max_dist_weight_11_100000.txt
+OUTPUT_FOLDER = /share/disk1/work/bioinformatics/tangbx/visualization/download_data/pipeline/GSE63525_K562_combined/mogen_100000/11/mogen_output
+INPUT_FILE = /share/disk1/work/bioinformatics/tangbx/visualization/download_data/pipeline/GSE63525_K562_combined/mogen_100000/11/chr11_100000.mogen.nm.txt
+VERBOSE = true
+LEARNING_RATE = 0.001
+MAX_ITERATION = 200000

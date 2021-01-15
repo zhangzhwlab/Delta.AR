@@ -1,0 +1,3 @@
+rm: 无法删除"/share/disk1/work/bioinformatics/tangbx/visualization/download_data/pipeline/GSE63525_K562_combined/mogen_100000/11/mogen_output/*": 没有那个文件或目录
+file /share/disk1/work/bioinformatics/tangbx/visualization/download_data/pipeline/GSE63525_K562_combined/mogen_100000/11/11.xyz.temp.xyz saved
+1317 warnings were not shown, please rerun with option -v to see them

@@ -1,0 +1,198 @@
+label,name,data_category,organism,cell,data_type,lab,antibody,peaks,replicate_number,file_type
+ensembl_gene,ensembl_gene,Ensembl,hg19,unknown,Ensembl Gene,Ensebml,unknown,none,,GFF3
+ensembl_gene1,ensembl_gene1,Ensembl,hg19,unknown,Ensembl Gene,Ensebml,unknown,none,,GFF3
+GM12878_5C,GM12878_5C,Encode,hg19,GM12878,5C,Dekker-UMass,unknown,Peaks,,bed
+GM12878_Elavl1,GM12878_Elavl1,Encode,hg19,GM12878,RIP-Seq,SunyAlbany,ELAVL1,Peaks,,broadPeak
+GM12878_EZH2,GM12878_EZH2,Encode,hg19,GM12878,ChIP-seq,Bernstein-Broad Institute,EZH2,Peaks,,broadPeak
+GM12878_EZH2_signal,GM12878_EZH2_signal,Encode,hg19,GM12878,ChIP-seq,Bernstein-Broad Institute,EZH2,Signal,,bigWig
+GM12878_H2AZ,GM12878_H2AZ,Encode,hg19,GM12878,ChIP-seq,Bernstein-Broad Institute,H2AZ,Peaks,,broadPeak
+GM12878_H2AZ_signal,GM12878_H2AZ_signal,Encode,hg19,GM12878,ChIP-seq,Bernstein-Broad Institute,H2AZ,Signal,,bigWig
+GM12878_H3K79me2,GM12878_H3K79me2,Encode,hg19,GM12878,ChIP-seq,Bernstein-Broad Institute,H3K79me2,Peaks,,broadPeak
+GM12878_H3K79me2_signal,GM12878_H3K79me2_signal,Encode,hg19,GM12878,ChIP-seq,Bernstein-Broad Institute,H3K79me2,Signal,,bigWig
+GM12878_H3K9me3,GM12878_H3K9me3,Encode,hg19,GM12878,ChIP-seq,Bernstein-Broad Institute,H3K9me3,Peaks,,broadPeak
+GM12878_H3K9me3_signal,GM12878_H3K9me3_signal,Encode,hg19,GM12878,ChIP-seq,Bernstein-Broad Institute,H3K9me3,Signal,,bigWig
+GM12878_Pabpc1,GM12878_Pabpc1,Encode,hg19,GM12878,RIP-Seq,SunyAlbany,PABPC1,Peaks,,broadPeak
+GM12878_RIP-Seq,GM12878_RIP-Seq,Encode,hg19,GM12878,RIP-Seq,SunyAlbany,ripInput,Peaks,,broadPeak
+GM12878_RIP-Seq_signal,GM12878_RIP-Seq_signal,Encode,hg19,GM12878,RIP-Seq,SunyAlbany,ripInput,Signal,,bigWig
+GM12878_RNA-Seq_minus_signal,GM12878_RNA-Seq_minus_signal,Encode,hg19,GM12878,RNA-Seq,Gingeras-CSHL,unknown,Minus signal,,bigWig
+GM12878_RNA-Seq_plus_signal,GM12878_RNA-Seq_plus_signal,Encode,hg19,GM12878,RNA-Seq,Gingeras-CSHL,unknown,Plus signal,,bigWig
+GM12878_CTCF_signal,GM12878_CTCF_signal,Encode,hg19,GM12878,ChIP-seq,"John Stamatoyannopoulos, UW",CTCF,Signal,,bigWig
+GM12878_SMC3_signal,GM12878_SMC3_signal,Encode,hg19,GM12878,ChIP-seq,"Michael Snyder, Stanford",SMC3,Signal,,bigWig
+GM12878_YY1_signal,GM12878_YY1_signal,Encode,hg19,GM12878,ChIP-seq,"Richard Myers, HAIB",YY1,Signal,,bigWig
+GM12878_ZNF143_signal,GM12878_ZNF143_signal,Encode,hg19,GM12878,ChIP-seq,"Michael Snyder, Stanford",ZNF143,Signal,,bigWig
+GM12878_H3K4me3_signal,GM12878_H3K4me3_signal,Encode,hg19,GM12878,ChIP-seq,"Bradley Bernstein, Broad",H3K4me3,Signal,,bigWig
+GM12878_H3K27me3_signal,GM12878_H3K27me3_signal,Encode,hg19,GM12878,ChIP-seq,"John Stamatoyannopoulos, UW",H3K27me3,Signal,,bigWig
+GM12878_H3K27ac_signal,GM12878_H3K27ac_signal,Encode,hg19,GM12878,ChIP-seq,"Bradley Bernstein, Broad",H3K27ac,Signal,,bigWig
+GM12878_H3K4me1_signal,GM12878_H3K4me1_signal,Encode,hg19,GM12878,ChIP-seq,"Bradley Bernstein, Broad",H3K4me1,Signal,,bigWig
+GM12878_H3K4me2_signal,GM12878_H3K4me2_signal,Encode,hg19,GM12878,ChIP-seq,"Bradley Bernstein, Broad
+",H3K4me2,Signal,,bigWig
+GM12878_RAD21_signal,GM12878_RAD21_signal,Encode,hg19,GM12878,ChIP-seq,"Richard Myers, HAIB
+",RAD21,Signal,,bigWig
+GM12878_H3K36me3_signal,GM12878_H3K36me3_signal,Encode,hg19,GM12878,ChIP-seq,"John Stamatoyannopoulos, UW
+",H3K36me3,Signal,,bigWig
+GSE63525_GM12878_combined_100000_Matrix,GSE63525_GM12878_combined_100000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,GM12878,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_GM12878_combined_1000000_Matrix,GSE63525_GM12878_combined_1000000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,GM12878,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_GM12878_combined_250000_Matrix,GSE63525_GM12878_combined_250000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,GM12878,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_GM12878_combined_500000_Matrix,GSE63525_GM12878_combined_500000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,GM12878,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_GM12878_combined_100000_KRNorm_Matrix,GSE63525_GM12878_combined_100000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,GM12878,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_GM12878_combined_1000000_KRNorm_Matrix,GSE63525_GM12878_combined_1000000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,GM12878,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_GM12878_combined_250000_KRNorm_Matrix,GSE63525_GM12878_combined_250000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,GM12878,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_GM12878_combined_500000_KRNorm_Matrix,GSE63525_GM12878_combined_500000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,GM12878,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_GM12878_combined_Interaction,GSE63525_GM12878_combined_Interaction,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,GM12878,Hi-C Interactions,Erez Lieberman Aiden,unknown,,,GFF3
+GSE63525_GM12878_combined_TAD,GSE63525_GM12878_combined_TAD,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,GM12878,Hi-C TAD,Erez Lieberman Aiden,unknown,,,GFF3
+GSE63525_HMEC_combined_100000_Matrix,GSE63525_HMEC_combined_100000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,HMEC,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_HMEC_combined_1000000_Matrix,GSE63525_HMEC_combined_1000000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,HMEC,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_HMEC_combined_250000_Matrix,GSE63525_HMEC_combined_250000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,HMEC,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_HMEC_combined_500000_Matrix,GSE63525_HMEC_combined_500000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,HMEC,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_HMEC_combined_100000_KRNorm_Matrix,GSE63525_HMEC_combined_100000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,HMEC,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_HMEC_combined_1000000_KRNorm_Matrix,GSE63525_HMEC_combined_1000000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,HMEC,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_HMEC_combined_250000_KRNorm_Matrix,GSE63525_HMEC_combined_250000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,HMEC,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_HMEC_combined_500000_KRNorm_Matrix,GSE63525_HMEC_combined_500000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,HMEC,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_HMEC_combined_Interaction,GSE63525_HMEC_combined_Interaction,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,HMEC,Hi-C Interactions,Erez Lieberman Aiden,unknown,,,GFF3
+GSE63525_HMEC_combined_TAD,GSE63525_HMEC_combined_TAD,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,HMEC,Hi-C TAD,Erez Lieberman Aiden,unknown,,,GFF3
+GSE63525_HUVEC_combined_100000_Matrix,GSE63525_HUVEC_combined_100000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,HUVEC,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_HUVEC_combined_1000000_Matrix,GSE63525_HUVEC_combined_1000000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,HUVEC,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_HUVEC_combined_250000_Matrix,GSE63525_HUVEC_combined_250000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,HUVEC,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_HUVEC_combined_500000_Matrix,GSE63525_HUVEC_combined_500000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,HUVEC,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_HUVEC_combined_100000_KRNorm_Matrix,GSE63525_HUVEC_combined_100000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,HUVEC,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_HUVEC_combined_1000000_KRNorm_Matrix,GSE63525_HUVEC_combined_1000000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,HUVEC,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_HUVEC_combined_250000_KRNorm_Matrix,GSE63525_HUVEC_combined_250000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,HUVEC,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_HUVEC_combined_500000_KRNorm_Matrix,GSE63525_HUVEC_combined_500000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,HUVEC,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_HUVEC_combined_Interaction,GSE63525_HUVEC_combined_Interaction,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,HUVEC,Hi-C Interactions,Erez Lieberman Aiden,unknown,,,GFF3
+GSE63525_HUVEC_combined_TAD,GSE63525_HUVEC_combined_TAD,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,HUVEC,Hi-C TAD,Erez Lieberman Aiden,unknown,,,GFF3
+GSE63525_IMR90_combined_100000_Matrix,GSE63525_IMR90_combined_100000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,IMR90,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_IMR90_combined_1000000_Matrix,GSE63525_IMR90_combined_1000000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,IMR90,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_IMR90_combined_250000_Matrix,GSE63525_IMR90_combined_250000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,IMR90,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_IMR90_combined_500000_Matrix,GSE63525_IMR90_combined_500000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,IMR90,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_IMR90_combined_100000_KRNorm_Matrix,GSE63525_IMR90_combined_100000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,IMR90,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_IMR90_combined_1000000_KRNorm_Matrix,GSE63525_IMR90_combined_1000000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,IMR90,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_IMR90_combined_250000_KRNorm_Matrix,GSE63525_IMR90_combined_250000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,IMR90,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_IMR90_combined_500000_KRNorm_Matrix,GSE63525_IMR90_combined_500000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,IMR90,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_IMR90_combined_Interaction,GSE63525_IMR90_combined_Interaction,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,IMR90,Hi-C Interactions,Erez Lieberman Aiden,unknown,,,GFF3
+GSE63525_IMR90_combined_TAD,GSE63525_IMR90_combined_TAD,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,IMR90,Hi-C TAD,Erez Lieberman Aiden,unknown,,,GFF3
+GSE63525_K562_combined_100000_Matrix,GSE63525_K562_combined_100000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,K562,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_K562_combined_1000000_Matrix,GSE63525_K562_combined_1000000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,K562,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_K562_combined_250000_Matrix,GSE63525_K562_combined_250000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,K562,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_K562_combined_500000_Matrix,GSE63525_K562_combined_500000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,K562,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_K562_combined_100000_KRNorm_Matrix,GSE63525_K562_combined_100000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,K562,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_K562_combined_1000000_KRNorm_Matrix,GSE63525_K562_combined_1000000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,K562,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_K562_combined_250000_KRNorm_Matrix,GSE63525_K562_combined_250000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,K562,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_K562_combined_500000_KRNorm_Matrix,GSE63525_K562_combined_500000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,K562,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_K562_combined_Interaction,GSE63525_K562_combined_Interaction,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,K562,Hi-C Interactions,Erez Lieberman Aiden,unknown,,,GFF3
+GSE63525_K562_combined_TAD,GSE63525_K562_combined_TAD,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,K562,Hi-C TAD,Erez Lieberman Aiden,unknown,,,GFF3
+GSE63525_KBM7_combined_100000_Matrix,GSE63525_KBM7_combined_100000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,KBM7,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_KBM7_combined_1000000_Matrix,GSE63525_KBM7_combined_1000000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,KBM7,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_KBM7_combined_250000_Matrix,GSE63525_KBM7_combined_250000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,KBM7,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_KBM7_combined_500000_Matrix,GSE63525_KBM7_combined_500000_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,KBM7,Hi-C Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_KBM7_combined_100000_KRNorm_Matrix,GSE63525_KBM7_combined_100000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,KBM7,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_KBM7_combined_1000000_KRNorm_Matrix,GSE63525_KBM7_combined_1000000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,KBM7,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_KBM7_combined_250000_KRNorm_Matrix,GSE63525_KBM7_combined_250000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,KBM7,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_KBM7_combined_500000_KRNorm_Matrix,GSE63525_KBM7_combined_500000_KRNorm_Matrix,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,KBM7,Hi-C KRNorm Heatmap,Erez Lieberman Aiden,unknown,,,Image
+GSE63525_KBM7_combined_Interaction,GSE63525_KBM7_combined_Interaction,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,KBM7,Hi-C Interactions,Erez Lieberman Aiden,unknown,,,GFF3
+GSE63525_KBM7_combined_TAD,GSE63525_KBM7_combined_TAD,Rao and Huntley et al. | Cell 2014| GSE63525,hg19,KBM7,Hi-C TAD,Erez Lieberman Aiden,unknown,,,GFF3
+H1-hESC_5C,H1-hESC_5C,Encode,hg19,H1-hESC,5C,unknown,unknown,Peaks,,bed
+H1-hESC_EZH2,H1-hESC_EZH2,Encode,hg19,H1-hESC,ChIP-seq,Bernstein-Broad Institute,EZH2,Peaks,,broadPeak
+H1-hESC_EZH2_signal,H1-hESC_EZH2_signal,Encode,hg19,H1-hESC,ChIP-seq,Bernstein-Broad Institute,EZH2,Signal,,bigWig
+H1-hESC_H2AZ,H1-hESC_H2AZ,Encode,hg19,H1-hESC,ChIP-seq,Bernstein-Broad Institute,H2AZ,Peaks,,broadPeak
+H1-hESC_H2AZ_signal,H1-hESC_H2AZ_signal,Encode,hg19,H1-hESC,ChIP-seq,Bernstein-Broad Institute,H2AZ,Signal,,bigWig
+H1-hESC_H3K27ac,H1-hESC_H3K27ac,Encode,hg19,H1-hESC,ChIP-seq,Bernstein-Broad Institute,H3K27ac,Peaks,,broadPeak
+H1-hESC_H3K27ac_signal,H1-hESC_H3K27ac_signal,Encode,hg19,H1-hESC,ChIP-seq,Bernstein-Broad Institute,H3K27ac,Signal,,bigWig
+H1-hESC_H3K79me2,H1-hESC_H3K79me2,Encode,hg19,H1-hESC,ChIP-seq,Bernstein-Broad Institute,H3K79me2,Peaks,,broadPeak
+H1-hESC_H3K79me2_signal,H1-hESC_H3K79me2_signal,Encode,hg19,H1-hESC,ChIP-seq,Bernstein-Broad Institute,H3K79me2,Signal,,bigWig
+H1-hESC_H3K9me3,H1-hESC_H3K9me3,Encode,hg19,H1-hESC,ChIP-seq,Bernstein-Broad Institute,H3K9me3,Peaks,,broadPeak
+H1-hESC_H3K9me3_signal,H1-hESC_H3K9me3_signal,Encode,hg19,H1-hESC,ChIP-seq,Bernstein-Broad Institute,H3K9me3,Signal,,bigWig
+H1-hESC_RAD21,H1-hESC_RAD21,Encode,hg19,H1-hESC,ChIP-seq,Snyder-Stanford,RAD21,Peaks,,narrowPeak
+H1-hESC_RAD21_signal,H1-hESC_RAD21_signal,Encode,hg19,H1-hESC,ChIP-seq,Snyder-Stanford,unknown,Signal,,bigWig
+H1-hESC_RNA-Seq_minus_signal,H1-hESC_RNA-Seq_minus_signal,Encode,hg19,H1-hESC,RNA-Seq,Gingeras-CSHL,unknown,Minus signal,2,bigWig
+H1-hESC_RNA-Seq_plus_signal,H1-hESC_RNA-Seq_plus_signal,Encode,hg19,H1-hESC,RNA-Seq,Gingeras-CSHL,unknown,Plus signal,2,bigWig
+H1-hESC_ZNF143,H1-hESC_ZNF143,Encode,hg19,H1-hESC,ChIP-seq,Snyder-Stanford,ZNF143,Peaks,,narrowPeak
+H1-hESC_ZNF143_signal,H1-hESC_ZNF143_signal,Encode,hg19,H1-hESC,ChIP-seq,Snyder-Stanford,unknown,Signal,,bigWig
+HeLa-S3_ChIA-PET_Pol2,HeLa-S3_ChIA-PET_Pol2,Encode,hg19,HeLa-S3,ChIA-PET,GIS-Ruan,POL2,Interactions,,bed
+HeLa-S3_ChIA-PET_Pol2_signal,HeLa-S3_ChIA-PET_Pol2_signal,Encode,hg19,HeLa-S3,ChIA-PET,GIS-Ruan,POL2,Signal,,bigWig
+HeLa-S3_CTCF,HeLa-S3_CTCF,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,CTCF,Peaks,,broadPeak
+HeLa-S3_CTCF_signal,HeLa-S3_CTCF_signal,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,CTCF,Signal,,bigWig
+HeLa-S3_EZH2,HeLa-S3_EZH2,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,EZH2,Peaks,,broadPeak
+HeLa-S3_EZH2_signal,HeLa-S3_EZH2_signal,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,EZH2,Signal,,bigWig
+HeLa-S3_H2AZ,HeLa-S3_H2AZ,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H2AZ,Peaks,,broadPeak
+HeLa-S3_H2AZ_signal,HeLa-S3_H2AZ_signal,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H2AZ,Signal,,bigWig
+HeLa-S3_H3K27ac,HeLa-S3_H3K27ac,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H3K27ac,Peaks,,broadPeak
+HeLa-S3_H3K27ac_signal,HeLa-S3_H3K27ac_signal,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H3K27ac,Signal,,bigWig
+HeLa-S3_H3K27me3,HeLa-S3_H3K27me3,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H3K27me3,Peaks,,broadPeak
+HeLa-S3_H3K27me3_signal,HeLa-S3_H3K27me3_signal,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H3K27me3,Signal,,bigWig
+HeLa-S3_H3K36me3,HeLa-S3_H3K36me3,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H3K36me3,Peaks,,broadPeak
+HeLa-S3_H3K36me3_signal,HeLa-S3_H3K36me3_signal,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H3K36me3,Signal,,bigWig
+HeLa-S3_H3K4me1,HeLa-S3_H3K4me1,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H3K4me1,Peaks,,broadPeak
+HeLa-S3_H3K4me1_signal,HeLa-S3_H3K4me1_signal,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H3K4me1,Signal,,bigWig
+HeLa-S3_H3K4me2,HeLa-S3_H3K4me2,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H3K4me2,Peaks,,broadPeak
+HeLa-S3_H3K4me2_signal,HeLa-S3_H3K4me2_signal,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H3K4me2,Signal,,bigWig
+HeLa-S3_H3K4me3,HeLa-S3_H3K4me3,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H3K4me3,Peaks,,broadPeak
+HeLa-S3_H3K4me3_signal,HeLa-S3_H3K4me3_signal,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H3K4me3,Signal,,bigWig
+HeLa-S3_H3K79me2_signal,HeLa-S3_H3K79me2_signal,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H3K79me2,Signal,,bigWig
+HeLa-S3_H3K79me2,HeLa-S3_H3K79me2,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H3K79me2,Peaks,,broadPeak
+HeLa-S3_H3K9ac,HeLa-S3_H3K9ac,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H3K9ac,Peaks,,broadPeak
+HeLa-S3_H3K9ac_signal,HeLa-S3_H3K9ac_signal,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H3K9ac,Signal,,bigWig
+HeLa-S3_H3K9me3,HeLa-S3_H3K9me3,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H3K9me3,Peaks,,broadPeak
+HeLa-S3_H3K9me3_signal,HeLa-S3_H3K9me3_signal,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H3K9me3,Signal,,bigWig
+HeLa-S3_H4K20me1,HeLa-S3_H4K20me1,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H4K20me1,Peaks,,broadPeak
+HeLa-S3_H4K20me1_signal,HeLa-S3_H4K20me1_signal,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H4K20me1,Signal,,bigWig
+HeLa-S3_H4K79me2,HeLa-S3_H4K79me2,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H3K79me2,Peaks,,broadPeak
+HeLa-S3_H4K79me2_signal,HeLa-S3_H4K79me2_signal,Encode,hg19,HeLa-S3,ChIP-seq,Bernstein-Broad Institute,H3K79me2,Signal,,bigWig
+HepG2_EZH2,HepG2_EZH2,Encode,hg19,HepG2,ChIP-seq,Bernstein-Broad Institute,EZH2,Peaks,,broadPeak
+HepG2_EZH2_signal,HepG2_EZH2_signal,Encode,hg19,HepG2,ChIP-seq,Bernstein-Broad Institute,EZH2,Signal,,bigWig
+HepG2_H2AZ,HepG2_H2AZ,Encode,hg19,HepG2,ChIP-seq,Bernstein-Broad Institute,H2AZ,Peaks,,broadPeak
+HepG2_H2AZ_signal,HepG2_H2AZ_signal,Encode,hg19,HepG2,ChIP-seq,Bernstein-Broad Institute,H2AZ,Signal,,bigWig
+HepG2_H3K4me1,HepG2_H3K4me1,Encode,hg19,HepG2,ChIP-seq,Bernstein-Broad Institute,H3K4me1,Peaks,,broadPeak
+HepG2_H3K4me1_signal,HepG2_H3K4me1_signal,Encode,hg19,HepG2,ChIP-seq,Bernstein-Broad Institute,H3K4me1,Signal,,bigWig
+HepG2_H3K79me2,HepG2_H3K79me2,Encode,hg19,HepG2,ChIP-seq,Bernstein-Broad Institute,H3K79me2,Peaks,,broadPeak
+HepG2_H3K79me2_signal,HepG2_H3K79me2_signal,Encode,hg19,HepG2,ChIP-seq,Bernstein-Broad Institute,H3K79me2,Signal,,bigWig
+HepG2_H3K9me3,HepG2_H3K9me3,Encode,hg19,HepG2,ChIP-seq,Bernstein-Broad Institute,H3K9me3,Peaks,,broadPeak
+HepG2_H3K9me3_signal,HepG2_H3K9me3_signal,Encode,hg19,HepG2,ChIP-seq,Bernstein-Broad Institute,H3K9me3,Signal,,bigWig
+HepG2_RAD21,HepG2_RAD21,Encode,hg19,HepG2,ChIP-seq,Snyder-Stanford,RAD21,Peaks,,narrowPeak
+HepG2_RAD21_signal,HepG2_RAD21_signal,Encode,hg19,HepG2,ChIP-seq,Snyder-Stanford,RAD21,Signal,,bigWig
+HepG2_RNA-Seq_minus_signal,HepG2_RNA-Seq_minus_signal,Encode,hg19,HepG2,RNA-Seq,Wold-CalTech,unknown,Minus Raw signal,,bigWig
+HepG2_RNA-Seq_plus_signal,HepG2_RNA-Seq_plus_signal,Encode,hg19,HepG2,RNA-Seq,Wold-CalTech,unknown,Plus Raw signal,,bigWig
+HepG2_SMC3,HepG2_SMC3,Encode,hg19,HepG2,ChIP-seq,Snyder-Stanford,SMC3,Peaks,,narrowPeak
+HepG2_SMC3_signal,HepG2_SMC3_signal,Encode,hg19,HepG2,ChIP-seq,Snyder-Stanford,SMC3,Signal,,bigWig
+HUVEC_DNase-seq_signal,HUVEC_DNase-seq_signal,Encode,hg19,HUVEC,DNase-seq,UW,unknown,Raw signal,,bigWig
+HUVEC_EZH2,HUVEC_EZH2,Encode,hg19,HUVEC,ChIP-seq,Bernstein-Broad Institute,EZH2,Peaks,,broadPeak
+HUVEC_EZH2_signal,HUVEC_EZH2_signal,Encode,hg19,HUVEC,ChIP-seq,Bernstein-Broad Institute,EZH2,Signal,,bigWig
+HUVEC_H2AZ,HUVEC_H2AZ,Encode,hg19,HUVEC,ChIP-seq,Bernstein-Broad Institute,H2AZ,Peaks,,broadPeak
+HUVEC_H2AZ_signal,HUVEC_H2AZ_signal,Encode,hg19,HUVEC,ChIP-seq,Bernstein-Broad Institute,H2AZ,Signal,,bigWig
+HUVEC_H3K79me2,HUVEC_H3K79me2,Encode,hg19,HUVEC,ChIP-seq,Bernstein-Broad Institute,H3K79me2,Peaks,,broadPeak
+HUVEC_H3K79me2_signal,HUVEC_H3K79me2_signal,Encode,hg19,HUVEC,ChIP-seq,Bernstein-Broad Institute,H3K79me2,Signal,,bigWig
+HUVEC_H3K9me3,HUVEC_H3K9me3,Encode,hg19,HUVEC,ChIP-seq,Bernstein-Broad Institute,H3K9me3,Peaks,,broadPeak
+HUVEC_H3K9me3_signal,HUVEC_H3K9me3_signal,Encode,hg19,HUVEC,ChIP-seq,Bernstein-Broad Institute,H3K9me3,Signal,,bigWig
+HUVEC_RNA-Seq_minus_signal,HUVEC_RNA-Seq_minus_signal,Encode,hg19,HUVEC,RNA-Seq,Gingeras-CSHL,unknown,Minus signal,3,bigWig
+HUVEC_RNA-Seq_plus_signal,HUVEC_RNA-Seq_plus_signal,Encode,hg19,HUVEC,RNA-Seq,Gingeras-CSHL,unknown,Plus signal,3,bigWig
+IMR90_CTCF,IMR90_CTCF,Encode,hg19,IMR90,ChIP-seq,Stanford,CTCF,Peaks,,narrowPeak
+IMR90_CTCF_signal,IMR90_CTCF_signal,Encode,hg19,IMR90,ChIP-seq,Stanford,CTCF,Signal,,bigWig
+IMR90_DNase-seq,IMR90_DNase-seq,Encode,hg19,IMR90,DNase-seq,Duke,unknown,Peaks,,narrowPeak
+IMR90_DNase-seq_signal,IMR90_DNase-seq_signal,Encode,hg19,IMR90,DNase-seq,Duke,unknown,Signal,,bigWig
+IMR90_RAD21,IMR90_RAD21,Encode,hg19,IMR90,ChIP-seq,Stanford,RAD21,Peaks,,narrowPeak
+IMR90_RAD21_signal,IMR90_RAD21_signal,Encode,hg19,IMR90,ChIP-seq,Stanford,RAD21,Signal,,bigWig
+IMR90_RNA-Seq_minus_signal,IMR90_RNA-Seq_minus_signal,Encode,hg19,IMR90,RNA-Seq,Gingeras-CSHL,unknown,Signal,,bigWig
+IMR90_RNA-Seq_plus_signal,IMR90_RNA-Seq_plus_signal,Encode,hg19,IMR90,RNA-Seq,Gingeras-CSHL,unknown,Signal,,bigWig
+K562_5C,K562_5C,Encode,hg19,K562,5C,Dekker-UMass,unknown,Peaks,,bed
+K562_ChIA-PET_CTCF,K562_ChIA-PET_CTCF,Encode,hg19,K562,ChIA-PET,GIS-Ruan,CTCF,Interactions,1,bed
+K562_ChIA-PET_CTCF_signal,K562_ChIA-PET_CTCF_signal,Encode,hg19,K562,ChIA-PET,GIS-Ruan,CTCF,Signal,1,bigWig
+K562_ChIA-PET_Pol2,K562_ChIA-PET_Pol2,Encode,hg19,K562,ChIA-PET,GIS-Ruan,POL2,Interactions,1,bed
+K562_ChIA-PET_Pol2_signal,K562_ChIA-PET_Pol2_signal,Encode,hg19,K562,ChIA-PET,GIS-Ruan,POL2,Signal,1,bigWig
+K562_DNase-seq,K562_DNase-seq,Encode,hg19,K562,DNase-seq,Crawford-Duke University,unknown,Peaks,,narrowPeak
+K562_DNase-seq_signal,K562_DNase-seq_signal,Encode,hg19,K562,DNase-seq,Crawford-Duke University,unknown,Signal,,bigWig
+K562_EZH2,K562_EZH2,Encode,hg19,K562,ChIP-seq,Bernstein-Broad Institute,EZH2,Peaks,,broadPeak
+K562_EZH2_signal,K562_EZH2_signal,Encode,hg19,K562,ChIP-seq,Bernstein-Broad Institute,EZH2,Signal,,bigWig
+K562_H2AZ,K562_H2AZ,Encode,hg19,K562,ChIP-seq,Bernstein-Broad Institute,H2AZ,Peaks,,broadPeak
+K562_H2AZ_signal,K562_H2AZ_signal,Encode,hg19,K562,ChIP-seq,Bernstein-Broad Institute,H2AZ,Signal,,bigWig
+K562_H3K79me2,K562_H3K79me2,Encode,hg19,K562,ChIP-seq,Bernstein-Broad Institute,H3K79me2,Peaks,,broadPeak
+K562_H3K79me2_signal,K562_H3K79me2_signal,Encode,hg19,K562,ChIP-seq,Bernstein-Broad Institute,H3K79me2,Signal,,bigWig
+K562_H3K9me3,K562_H3K9me3,Encode,hg19,K562,ChIP-seq,Bernstein-Broad Institute,H3K9me3,Peaks,,broadPeak
+K562_H3K9me3_signal,K562_H3K9me3_signal,Encode,hg19,K562,ChIP-seq,Bernstein-Broad Institute,H3K9me3,Signal,,bigWig
+K562_RAD21,K562_RAD21,Encode,hg19,K562,ChIP-seq,Myers-Hudson Alpha,RAD21,Peaks,2,broadPeak
+K562_RAD21_signal,K562_RAD21_signal,Encode,hg19,K562,ChIP-seq,Snyder-Stanford,RAD21,Signal,1,bigWig
+K562_RIP-Seq,K562_RIP-Seq,Encode,hg19,K562,RIP-Seq,SunyAlbany,unknown,Peaks,,broadPeak
+K562_RIP-Seq_signal,K562_RIP-Seq_signal,Encode,hg19,K562,RIP-Seq,SunyAlbany,unknown,Signal,1,bigWig
+K562_RNA-Seq_minus_signal,K562_RNA-Seq_minus_signal,Encode,hg19,K562,RNA-Seq,Gingeras-CSHL,unknown,Minus signal,4,bigWig
+K562_RNA-Seq_plus_signal,K562_RNA-Seq_plus_signal,Encode,hg19,K562,RNA-Seq,Gingeras-CSHL,unknown,Plus signal,4,bigWig
+K562_SMC3,K562_SMC3,Encode,hg19,K562,ChIP-seq,Bernstein-Broad Institute,SMC3,Peaks,,narrowPeak
+K562_ZNF143,K562_ZNF143,Encode,hg19,K562,ChIP-seq,Bernstein-Broad Institute,ZNF143,Peaks,,narrowPeak
+K562_H3K4me3_signal,K562_H3K4me3_signal,Encode,hg19,K562,ChIP-seq,Bernstein-Broad Institute,H3K4me3,Signal,,bigWig

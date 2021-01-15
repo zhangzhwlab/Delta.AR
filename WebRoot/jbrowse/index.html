@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>JBrowse</title>
+    <link rel="stylesheet" type="text/css" href="css/genome.css">
+	<link rel="stylesheet" type="text/css" href="/circosweb/css/myjbrowse.css">
+	<link rel="stylesheet" href="/circosweb/css/jquery-ui.css" />
+	<script type="text/javascript" src="/circosweb/js/cookie.js"></script>
+	<script type="text/javascript" src="/circosweb/js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="/circosweb/js/jquery-ui.js"></script>
+</head>
+<body>
+
+    <script type="text/javascript">
+            // jshint unused: false
+            var dojoConfig = {
+                async: true,
+                baseUrl: './src',
+                has: {
+                    'host-node': false // Prevent dojo from being fooled by Electron
+                }
+            };
+            // Move Electron's require out before loading Dojo
+            if(window.process&&process.versions&&process.versions.electron) {
+                window.electronRequire = require;
+                delete window.require;
+            }
+    </script>
+    <script type="text/javascript" src="src/dojo/dojo.js"></script>
+    <script type="text/javascript" src="src/JBrowse/init.js"></script>
+    <script type="text/javascript">
+	
+        window.onerror=function(msg){
+            if( document.body )
+                document.body.setAttribute("JSError",msg);
+        }
+
+        // puts the main Browser object in this for convenience.  feel
+        // free to move it into function scope if you want to keep it
+        // out of the global namespace
+        var JBrowse;
+        require(['JBrowse/Browser', 'dojo/io-query', 'dojo/json' ],
+             function (Browser,ioQuery,JSON) {
+                   // the initial configuration of this JBrowse
+                   // instance
+
+                   // NOTE: this initial config is the same as any
+                   // other JBrowse config in any other file.  this
+                   // one just sets defaults from URL query params.
+                   // If you are embedding JBrowse in some other app,
+                   // you might as well just set this initial config
+                   // to something like { include: '../my/dynamic/conf.json' },
+                   // or you could put the entire
+                   // dynamically-generated JBrowse config here.
+
+                   // parse the query vars in the page URL
+                   var queryParams = ioQuery.queryToObject( window.location.search.slice(1) );
+
+                   var config = {
+                       containerID: "GenomeBrowser",
+
+                       dataRoot: queryParams.data,
+                       queryParams: queryParams,
+                       location: queryParams.loc,
+                       forceTracks: queryParams.tracks,
+                       initialHighlight: queryParams.highlight,
+					   show_embedtopo:queryParams.showembedTopo,
+					   show_gotophysical: queryParams.notGotoPhysical,
+                       show_nav: queryParams.nav,
+                       show_tracklist: queryParams.tracklist,
+                       show_overview: queryParams.overview,
+                       show_menu: queryParams.menu,
+                       show_tracklabels: queryParams.tracklabels,
+                       highResolutionMode: queryParams.highres,
+                       stores: { url: { type: "JBrowse/Store/SeqFeature/FromConfig", features: [] } },
+                       makeFullViewURL: function( browser ) {
+
+                           // the URL for the 'Full view' link
+                           // in embedded mode should be the current
+                           // view URL, except with 'nav', 'tracklist',
+                           // and 'overview' parameters forced to 1.
+
+                           return browser.makeCurrentViewURL({ nav: 1, tracklist: 1, overview: 1 });
+                       },
+                       updateBrowserURL: true
+                   };
+
+                   //if there is ?addFeatures in the query params,
+                   //define a store for data from the URL
+                   if( queryParams.addFeatures ) {
+                       config.stores.url.features = JSON.parse( queryParams.addFeatures );
+                   }
+
+                   // if there is ?addTracks in the query params, add
+                   // those track configurations to our initial
+                   // configuration
+                   if( queryParams.addTracks ) {
+                       config.tracks = JSON.parse( queryParams.addTracks );
+                   }
+
+                   // if there is ?addStores in the query params, add
+                   // those store configurations to our initial
+                   // configuration
+                   if( queryParams.addStores ) {
+                       config.stores = JSON.parse( queryParams.addStores );
+                   }
+
+                   // create a JBrowse global variable holding the JBrowse instance
+                   JBrowse = new Browser( config );
+				   
+					//add a button ,which can synchronize to physical view
+				
+				  if(queryParams.showPhysical){
+						document.getElementById("idshowpbtn").style.display="";
+						$("#GenomeBrowser").css("height","50%");
+						$("#id4cnote").html("Click \"show\" button to display virutal 4C plot");
+						//showVirtual4C();
+				  }else{
+						document.getElementById("idshowpbtn").style.display="none";	
+						$("#GenomeBrowser").css("height","90%");
+						$("#id4cnote").html("Click \"Virtual 4C\" button in navigation bar to active virutal 4C plot");
+				  }
+				 // var containerwidth = $("#zoomContainer").width();
+				//  $("#panelfooter").css("width","8640.9px");
+				  
+				 // console.log("queryParams.notGotoPhysical"+queryParams.notGotoPhysical);
+				  
+				  
+        });
+		
+		
+		
+		//data=human&loc=3%3A19849592..178267534&tracks=ensembl_gene
+		function RefreshPhysical(){
+			var data = getQueryString("data");
+			var loc = getQueryString("loc");
+			var tracks = getQueryString("tracks"); // exclude DNA
+		
+			var jumptrack = "";
+
+			if(tracks.indexOf(",") > -1){ // track contains is DNA
+				if(tracks != null){
+					var trass = tracks.split(",");
+					for(var ti=0;ti<trass.length;ti++){
+						var t_tr = trass[ti];
+						if(t_tr!='DNA'&& parseInt(t_tr.indexOf("Matrix")) < 0  ){
+					
+							if(t_tr.indexOf('signal') > -1){
+								t_tr = t_tr.substr(0,t_tr.length-7);
+							}
+							jumptrack += t_tr;
+							if(ti !=(trass.length-1)){
+								jumptrack +=",";
+							}
+						}
+						
+					}
+				}
+			
+			}else{
+			   if(tracks.indexOf('signal') > -1){
+					tracks = tracks.substr(0,tracks.length-7);
+				}
+				if( parseInt(tracks.indexOf("Matrix")) <0  ){
+					jumptrack = tracks;
+				}
+				
+				
+			}
+
+			window.parent.refereshLocationFromGenomeView(data,loc,jumptrack); ////conf,loc,tracks	
+			
+		}
+		
+		
+		function goTopology(){
+			var p_pos = getQueryString("loc"); 
+			var conf = getQueryString("data");
+			var tracks = getQueryString("tracks"); // exclude DNA
+		
+			var jumptrack = "";
+			if(tracks.indexOf(",") > -1){ // track contains is DNA
+				if(tracks != null){
+					var trass = tracks.split(",");
+					for(var ti=0;ti<trass.length;ti++){
+						var t_tr = trass[ti];
+						
+						if(t_tr!='DNA'&& (parseInt(t_tr.indexOf("Matrix")) <0  &&  parseInt(t_tr.indexOf("TAD")) <0 )){
+							//alert("t_tr="+t_tr);
+							if(t_tr.indexOf('signal') > -1){
+								t_tr = t_tr.substr(0,t_tr.length-7);
+							}
+							jumptrack += t_tr;
+							if(ti !=(trass.length-1)){
+								jumptrack +=",";
+							}
+						}
+						
+					}
+				}
+			
+			}else{
+			   
+			   if(tracks.indexOf('signal') > -1){
+					tracks = tracks.substr(0,tracks.length-7);
+				}  
+				if((parseInt(tracks.indexOf("Matrix") ) < 0  &&  parseInt(tracks.indexOf("TAD") ) <0)){
+					jumptrack = tracks;
+				}				
+			}
+			
+
+			
+			//clear cookie
+			clearCookies("topo");
+			var threfurl;
+			if(conf == null){			
+				threfurl="http://"+window.location.host+"/pages/visualization/topo_viewm.jsp?loc="+p_pos;			
+				threfurl+="&tracks="+jumptrack;			
+			}else{		
+				threfurl="http://"+window.location.host+"/pages/visualization/topo_viewm.jsp?conf="+conf+"&loc="+p_pos;
+				threfurl+="&tracks="+jumptrack;			
+			}
+			var a = document.getElementById("goto");
+			if(a == null){
+				a=document.createElement('a');
+				a.id="goto";
+				document.body.appendChild(a);
+			}
+			
+			a.href = threfurl;
+			a.target="_blank";
+			
+			 document.getElementById("goto").click();
+		
+						
+		}
+		
+		//this is used to draw Virtual 4C 
+		function goVirtual4C(){
+			
+			
+			var virtualurl="http://"+window.location.host+"/pages/visualization/virtual_4c.jsp";
+			var p_pos = getQueryString("loc"); 
+			if(p_pos!=null){
+				if(p_pos.indexOf("..")>-1){
+					var idex = p_pos.indexOf("..");
+					p_pos = p_pos.substring(0,idex);
+				}
+			}
+			
+			var organism = getQueryString("organism");
+			if(organism == null ){
+				organism = "hg19";
+			}
+			
+			virtualurl+= "?organism="+organism+"&loc="+p_pos;
+			var resolution = getQueryString("resolution");
+			if(resolution != null ){
+			
+				var expand = parseInt(resolution)*20;
+				virtualurl += "&resolution="+resolution+"&expand="+expand;
+			}
+			
+			var a = document.getElementById("goto");
+			if(a == null){
+				a=document.createElement('a');
+				a.id="goto";
+				document.body.appendChild(a);
+			}
+			
+			a.href = virtualurl;
+			a.target="_blank";
+			
+			 document.getElementById("goto").click();
+		
+		
+		}
+		
+		
+		
+		
+		//this will activate an embed topology
+		function gotoEmbedTopology(){
+			var data = getQueryString("data");
+			var loc = getQueryString("loc");
+			var tracks = getQueryString("tracks"); // exclude DNA
+		
+			var jumptrack = "";
+			if(tracks.indexOf(",") > -1){ // track contains is DNA
+				if(tracks != null){
+					var trass = tracks.split(",");
+					for(var ti=0;ti<trass.length;ti++){
+						var t_tr = trass[ti];
+						if(t_tr!='DNA'&& t_tr!='peak' && t_tr!='matrix' && t_tr!='tad' && ( parseInt(t_tr.indexOf("_Matrix") ) <0  &&   parseInt(t_tr.indexOf("_TAD") ) <0)){
+						
+							if(t_tr.indexOf('signal') > -1){
+								t_tr = t_tr.substr(0,t_tr.length-7);
+							}
+							jumptrack += t_tr;
+							if(ti !=(trass.length-1)){
+								jumptrack +=",";
+							}
+						}
+						
+					}
+				}
+			
+			}else{
+			   if(tracks.indexOf('signal') > -1){
+					tracks = tracks.substr(0,tracks.length-7);
+				} 
+
+				if( parseInt(tracks.indexOf("_Matrix") ) <0  &&  parseInt(tracks.indexOf("_TAD") ) <0)
+					jumptrack = tracks;
+				
+			}
+			window.parent.refereshEmbedTopology(data,loc,jumptrack);
+		}
+		
+		
+		function goPhysical(){
+			var p_pos = getQueryString("loc"); 
+			var conf = getQueryString("data");
+			
+			var threfurl;
+			
+			
+			var tracks = getQueryString("tracks"); // exclude DNA		
+			
+			var jumptrack = "";			
+			var modelkeymap={"GSE35156_IMR90":"MOGEN_GSE35156_IMR90_40000","GSE18199_K562":"BACH_GSE18199_K562_1000000,MOGEN_GSE18199_K562_1000000","GSE18199_GM06690":"MOGEN_GSE18199_GM06690_1000000,MOGEN_GSE18199_GM06690_100000","GSE63525_K562_combined":"BACH_GSE63525_K562_combined_1000000,BACH_GSE63525_K562_combined_500000,MOGEN_GSE63525_K562_combined_1000000,MOGEN_GSE63525_K562_combined_500000,MOGEN_GSE63525_K562_combined_250000,MOGEN_GSE63525_K562_combined_100000","GSE63525_GM12878_combined":"MOGEN_GSE63525_GM12878_combined_100000,MOGEN_GSE63525_GM12878_combined_1000000,MOGEN_GSE63525_GM12878_combined_500000,MOGEN_GSE63525_GM12878_combined_250000,BACH_GSE63525_GM12878_combined_1000000","GSE63525_HUVEC_combined":"MOGEN_GSE63525_HUVEC_combined_100000,MOGEN_GSE63525_HUVEC_combined_1000000,MOGEN_GSE63525_HUVEC_combined_500000,MOGEN_GSE63525_HUVEC_combined_250000","GSE63525_HMEC_combined":"MOGEN_GSE63525_HMEC_combined_100000,MOGEN_GSE63525_HMEC_combined_1000000,MOGEN_GSE63525_HMEC_combined_500000,MOGEN_GSE63525_HMEC_combined_250000","GSE63525_IMR90_combined":"MOGEN_GSE63525_IMR90_combined_100000,MOGEN_GSE63525_IMR90_combined_1000000,MOGEN_GSE63525_IMR90_combined_500000,MOGEN_GSE63525_IMR90_combined_250000","GSE63525_KBM7_combined":"MOGEN_GSE63525_KBM7_combined_100000,MOGEN_GSE63525_KBM7_combined_1000000,MOGEN_GSE63525_KBM7_combined_500000,MOGEN_GSE63525_KBM7_combined_250000"};
+			var cmodelkeymap = {};
+			
+					
+			var pvmodel=[];
+			var tmpmodel=[];
+			if(tracks != null){
+			
+			
+			
+			if(tracks.indexOf(",") > -1){ // mutiple tracks, track contains is DNA
+
+					var trass = tracks.split(",");
+					for(var ti=0;ti<trass.length;ti++){
+						var t_tr = trass[ti];
+						if(t_tr!='DNA'){
+							
+							if(t_tr.indexOf('signal') > -1){
+								t_tr = t_tr.substr(0,t_tr.length-7);
+							}
+							
+							var hicindex = t_tr.lastIndexOf('_');
+							if(hicindex > -1){
+								var hicstr = t_tr.substring(0,hicindex);
+							
+								if(modelkeymap[hicstr]!=null ){
+									if(cmodelkeymap[hicstr] == null ){									
+										cmodelkeymap[hicstr] = hicstr ;	
+										//
+										var modelarry = modelkeymap[hicstr].split(",");
+										if(modelarry != null ){
+											
+											for(var ji=0;ji<modelarry.length;ji++){
+												var t_mstr = modelarry[ji];
+												//identify whether pvmodel exists
+												var idenflag  = 0 ;
+												if(pvmodel.length > 0 ){
+														for(var jp =0 ; jp< pvmodel.length ;jp++){
+															var jp_mstr = pvmodel[jp];
+															var mo_mstr = t_mstr+"_3dmodel";
+															if(jp_mstr == mo_mstr){
+																idenflag = 1; 
+																break;															
+															}
+														
+														}
+												}
+												
+												if(idenflag == 0){
+													pvmodel.push(t_mstr+"_3dmodel");
+												}
+													
+											}
+									   }
+										
+													
+									} 
+								}else{
+								
+									if( parseInt(t_tr.indexOf("Matrix") ) <0 &&  parseInt(t_tr.indexOf("TAD") ) <0){
+									//	alert("============t_tr"+t_tr);
+										jumptrack += t_tr;
+										if(ti !=(trass.length-1)){
+											jumptrack +=",";
+										}
+									}
+									else{
+										    hicindex = hicstr.lastIndexOf('_');
+											if(hicindex > -1){
+												var tmpkey = hicstr.substring(0,hicindex);
+												//whether exist BACH or MOGEN
+												var truemodel = "BACH_"+hicstr;
+												var trumoedel1 =  "MOGEN_"+hicstr;
+												
+												
+												//identify hicstr whether end with binsize
+												var modelarry = modelkeymap[tmpkey].split(",");
+												if(modelarry != null ){
+													for(var ji=0;ji<modelarry.length;ji++){
+														var t_mstr = modelarry[ji];
+														if(t_mstr == truemodel){ // has bin size
+															idenflag = 1;
+															if(cmodelkeymap[hicstr] == null ){
+																cmodelkeymap[hicstr] = hicstr ;													
+																pvmodel.push(truemodel+"_3dmodel");
+															}
+															
+															break;
+														}
+														if(t_mstr == trumoedel1){ // has bin size
+
+															idenflag = 1;
+															if(cmodelkeymap[hicstr] == null){
+																cmodelkeymap[hicstr] = hicstr ;			
+																pvmodel.push(trumoedel1+"_3dmodel");														
+															}
+															
+															break;
+														}
+														
+													}
+												}
+										
+										}
+										
+									
+									}
+								}
+							
+							}else{
+									if( parseInt(t_tr.indexOf("Matrix") ) <0 &&  parseInt(t_tr.indexOf("TAD") ) <0){
+										jumptrack += t_tr;
+										if(ti !=(trass.length-1)){
+											jumptrack +=",";
+										}
+									}
+
+							}
+						}
+					}
+				
+			
+			}else { // only one tracks
+					if(tracks.indexOf('signal') > -1){
+						tracks = tracks.substr(0,tracks.length-7);
+					}  
+					var hicindex = tracks.lastIndexOf('_');
+					if(hicindex > -1){
+							var hicstr = tracks.substring(0,hicindex);
+							if(modelkeymap[hicstr]!=null ){
+									if(cmodelkeymap[hicstr] == null ){									
+										cmodelkeymap[hicstr] = hicstr ;	
+										//
+										var modelarry = modelkeymap[hicstr].split(",");
+										if(modelarry != null ){
+											
+											for(var ji=0;ji<modelarry.length;ji++){
+												var t_mstr = modelarry[ji];
+												//identify whether pvmodel exists
+												var idenflag  = 0 ;
+												if(pvmodel.length > 0 ){
+														for(var jp =0 ; jp< pvmodel.length ;jp++){
+															var jp_mstr = pvmodel[jp];
+															var mo_mstr = t_mstr+"_3dmodel";
+															if(jp_mstr == mo_mstr){
+																idenflag = 1; 
+																break;															
+															}
+
+														}
+												}
+												
+												if(idenflag == 0){
+													pvmodel.push(t_mstr+"_3dmodel");
+												}
+													
+											}
+									   }
+										
+													
+									} 
+								}else{
+								
+									if( parseInt(t_tr.indexOf("Matrix") ) <0 &&  parseInt(t_tr.indexOf("TAD") ) <0){
+										jumptrack = tracks;
+									}
+									else{
+										hicindex = hicstr.lastIndexOf('_');
+											if(hicindex > -1){
+												var tmpkey = hicstr.substring(0,hicindex);
+												//whether exist BACH or MOGEN
+												var truemodel = "BACH_"+hicstr;
+												var trumoedel1 =  "MOGEN_"+hicstr;
+												
+												
+												//identify hicstr whether end with binsize
+												var modelarry = modelkeymap[tmpkey].split(",");
+												if(modelarry != null ){
+													for(var ji=0;ji<modelarry.length;ji++){
+														var t_mstr = modelarry[ji];
+														if(t_mstr == truemodel){ // has bin size
+															idenflag = 1;
+															if(cmodelkeymap[hicstr] == null ){
+																cmodelkeymap[hicstr] = hicstr ;													
+																pvmodel.push(truemodel+"_3dmodel");
+															}
+															
+															break;
+														}
+														if(t_mstr == trumoedel1){ // has bin size
+
+															idenflag = 1;
+															if(cmodelkeymap[hicstr] == null){
+																cmodelkeymap[hicstr] = hicstr ;			
+																pvmodel.push(trumoedel1+"_3dmodel");														
+															}
+															
+															break;
+														}
+														
+													}
+												}
+										
+										}
+										
+									
+									}
+								}	
+					
+					}else{
+						
+						jumptrack = tracks;
+					}
+				}
+			}
+			if(jumptrack.length>0){
+				jumptrack = jumptrack.substring(0,jumptrack.length-1);
+			}
+			//
+			if(pvmodel.length>0){
+				console.log("==========jumptrack="+jumptrack);
+				
+				var t_html = '';
+				if(conf != null && conf != "hg18" && conf!="hg19"){
+					t_html = '<input class=\"re_select_track\" type=\"radio\" name=\"model\" value=\"3dmodel\" checked=\"checked\" />default 3dmodel<br/>'
+			    }
+				for(i =0; i< pvmodel.length; i++){
+					var tmodelname = pvmodel[i];
+					if(tmodelname.indexOf(',') > -1 ){
+						var tmodel_arry = tmodelname.split(",");
+						if(tmodel_arry != null ){
+							for(var t=0;t<tmodel_arry.length;t++){
+								var tt_m =tmodel_arry[t]+"_3dmodel"; 
+								t_html += '<input class=\"re_select_track\" type=\"radio\" name=\"model\" value=\"'+tt_m+'\"  />'+tt_m+"<br/>";
+							}
+							
+						}
+					}else{
+						t_html += '<input class=\"re_select_track\" type=\"radio\" name=\"model\" value=\"'+tmodelname+'\"  />'+tmodelname+"<br/>";
+					}
+				}
+				
+				
+				//then we need to popup a dialog ,with model name
+					$('<div></div>').appendTo('body')
+							  .html('<div style=\"margin-top:10px;\">'+t_html+'</div>')
+							  .dialog({
+								  modal: true, title: 'Choose a 3d model', zIndex: 10000, autoOpen: true,
+								  width: 'auto', resizable: false,						 
+								  close: function (event, ui) {
+									  //remove from cookie								 
+									  $(this).remove();
+								  },
+								  buttons:{
+									  Yes: function(){
+										//here read the checked radio button
+										   var checkmodel= $('input[type="radio"][name="model"]:checked').val();
+										   var seljumptrack = jumptrack;
+										   if(jumptrack.length> 0 ){
+												seljumptrack += ","+checkmodel;
+											}else{
+												seljumptrack = checkmodel;
+											}
+											var t_key="";
+											var t_key1="";
+											var findex = checkmodel.indexOf("_");
+											var lindex = checkmodel.indexOf("_3dmodel");
+									
+											if(findex > -1 && lindex > -1){
+												var tstr = checkmodel.substring(findex+1,lindex);
+												 t_key = tstr+"_TAD";
+												 t_key1 = tstr+"_Interaction";
+												
+												
+											
+											}else if(checkmodel=="3dmodel"){
+												t_key = "TAD";												
+											}
+											
+											if(tracks!= null){
+													var trass = tracks.split(",");
+													for(var ti=0;ti<trass.length;ti++){
+														var t_tr = trass[ti];
+														if(t_key.length>0 && t_tr == t_key){
+															seljumptrack += ","+t_key;
+														}
+														if(t_key1.length>0 && t_tr == t_key1){
+															seljumptrack += ","+t_key1;
+														}
+													}
+												}
+									
+																											   
+										   
+											//clear cookie
+											clearCookies("physical");
+											
+											if(conf == null){			
+												threfurl="http://"+window.location.host+"/pages/visualization/physical_view.jsp?loc="+p_pos;			
+												threfurl+="&tracks="+seljumptrack;			
+											}else{		
+												threfurl="http://"+window.location.host+"/pages/visualization/physical_view.jsp?conf="+conf+"&loc="+p_pos;
+												threfurl+="&tracks="+seljumptrack;			
+											}
+											
+											var a = document.getElementById("goto");
+											if(a == null){
+												a=document.createElement('a');
+												a.id="goto";
+												document.body.appendChild(a);
+											}
+											
+											
+											a.href = threfurl;
+											a.target="_blank";
+											
+											document.getElementById("goto").click();
+											$(this).dialog('close');
+									  },
+									  No: function(){
+										$(this).dialog('close');
+									  }
+							}});
+				
+			
+			}else{ // default choose 3dmodel
+			
+			
+				if(conf != null && conf != "hg18" && conf!="hg19"){
+					if(jumptrack.length> 0 ){
+						jumptrack += ",3dmodel";
+					}else{
+						jumptrack = "3dmodel";
+					}
+				}
+				
+				
+					//clear cookie
+			clearCookies("physical");
+			
+			if(conf == null){			
+				threfurl="http://"+window.location.host+"/pages/visualization/physical_view.jsp?loc="+p_pos;			
+				threfurl+="&tracks="+jumptrack;			
+			}else{		
+				threfurl="http://"+window.location.host+"/pages/visualization/physical_view.jsp?conf="+conf+"&loc="+p_pos;
+				threfurl+="&tracks="+jumptrack;			
+			}
+			
+			var a = document.getElementById("goto");
+			if(a == null){
+				a=document.createElement('a');
+				a.id="goto";
+				document.body.appendChild(a);
+			}
+			
+			
+			a.href = threfurl;
+			a.target="_blank";
+			
+			document.getElementById("goto").click();
+				
+			}
+			 
+	}
+		
+		function getQueryString(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+			var r = window.location.search.substr(1).match(reg);
+			if (r != null) return unescape(r[2]); return null;
+		}
+		//save the whole canvas image as pdf
+		function savePageAs(){
+			var url =encodeURIComponent(window.location.href+"&tracklist=0");		
+			document.getElementById("exportwait").style.display="";
+			var params = {"url":url,"renderType":'png',"zoomFactor":4,"renderSize":'4800px*2600px'};
+			$.ajax({
+				   url:'/circosweb/ajax/ajaxExportPDF.action',
+				   type:'post',
+				   dataType:'json',
+				   data:params,
+				   success:function(value){
+				   
+							  $('<div></div>').appendTo('body')
+							  .html('<div style=\"margin-top:10px;\">Please referesh the page when you found the exported picture is unusual.</div>')
+							  .dialog({
+								  modal: true, title: 'Export Info', zIndex: 10000, autoOpen: true,
+								  width: 'auto', resizable: false,						 
+								  close: function (event, ui) {
+									  //remove from cookie	
+									  var a = document.getElementById("goto");
+										if(a == null){
+											a=document.createElement('a');
+											a.id="goto";
+											document.body.appendChild(a);
+										}
+										a.href = value.exportURL; // Set the file name.
+										a.target="_blank";
+										a.style.display = 'none';
+										document.getElementById("goto").click();
+										document.getElementById("exportwait").style.display="none";
+										delete a;			
+									  $(this).remove();
+								  },
+								  buttons:{
+									  Ok: function(){
+									    var a = document.getElementById("goto");
+										if(a == null){
+											a=document.createElement('a');
+											a.id="goto";
+											document.body.appendChild(a);
+										}
+										a.href = value.exportURL; // Set the file name.
+										a.target="_blank";
+										a.style.display = 'none';
+										document.getElementById("goto").click();
+										document.getElementById("exportwait").style.display="none";
+										delete a;			
+									    $(this).remove();
+										
+									  }
+								  }
+							});
+								  
+						
+				   
+				   
+											
+					},
+				   error:function(e){
+							alert("Export error");
+						}
+				   }); 				
+		
+		
+		}
+	
+	
+	
+	function AddTracks(tracks){
+		if(JBrowse != null ){
+			JBrowse.showTracks(tracks);
+		}
+	}
+	
+	function RemoveTracks(tracks){
+		if(JBrowse != null ){
+			JBrowse.hideTracks(tracks);
+		}
+	}
+	
+	function RefreshGenomeView(loc,tracks){
+		document.getElementById("idpos").value=loc;
+		JBrowse.navigateTo(loc);
+	}
+	
+	function HighlightGenomeView(loc,tracks){
+		document.getElementById("idpos").value=loc;
+		var index1 = loc.indexOf(":");
+		var index2 = loc.indexOf(".");
+		var chrtmp = loc.substring(0,index1);
+		var pos_starttmp = loc.substring(index1+1,index2);
+		var pos_endtmp = loc.substring(index2+2,loc.length);
+		
+		var location= {"ref":chrtmp,"start":pos_starttmp,"end":pos_endtmp};
+		console.log("==================current location="+pos_starttmp+","+pos_endtmp);
+		//JBrowse.clearHighlight();
+		JBrowse.setHighlightAndRedraw(location);
+	
+	}
+	
+	
+	function clearCookies(rpath){	
+		Cookies.remove(rpath+'_track', { path: rpath });
+		Cookies.remove(rpath+'_dataset', { path: rpath });
+		Cookies.remove(rpath+'_position', { path: rpath});	
+		
+	}
+
+	
+	function absolutePosition(obj)
+	{
+		var c = [0,0];
+		if(obj.offsetParent) {
+			var o2 = obj;
+			do {
+				var b=parseInt(o2.style.borderLeftWidth);
+				c[0] += o2.offsetLeft+(isNaN(b)?0:b);
+				b=parseInt(o2.style.borderTopWidth);
+				c[1] += o2.offsetTop+(isNaN(b)?0:b);
+			} while(o2 = o2.offsetParent);
+		}
+		return c;
+	}
+	
+	function get_page_left_top(){
+		var pagepos=[0,0];
+		
+		if (document.compatMode == "BackCompat") {	
+			pagepos[0] = document.body.scrollLeft;
+			pagepos[1] = document.body.scrollTop;
+		}
+		else { //document.compatMode == \"CSS1Compat\"	
+			pagepos[0] = document.documentElement.scrollLeft == 0 ? document.body.scrollLeft : document.documentElement.scrollLeft;
+			pagepos[1] = document.documentElement.scrollTop == 0 ? document.body.scrollTop : document.documentElement.scrollTop;
+		}
+		
+		return pagepos;
+	
+	}
+	
+	function loadVirtual4C(){
+		
+		var pdataset="";
+		var presolution = "";
+		var ploc="";
+		var start_bin = "";
+		var expandRegion = "";
+		
+		var p_pos = getQueryString("loc"); 
+			var pos_start="";
+			var pos_end = "";
+			if(p_pos!=null){
+				if(p_pos.indexOf("..")>-1){
+					var idex = p_pos.indexOf("..");
+					
+					pos_end = p_pos.substring(idex+2,p_pos.length);
+					var idex1 = p_pos.indexOf(":");
+					pos_start = p_pos.substring(idex1+1,idex);
+					p_pos = p_pos.substring(0,idex);
+				}
+			}
+		
+		if(document.getElementById("idshowpbtn").style.display==""){ // embed virutal 4c
+		
+			var containerwidth = $(document.body).width();
+			/*if(containerwidth.indexOf("px")>-1){
+				var idex = containerwidth.indexOf("px");
+				containerwidth = containerwidth.substring(0,idex);
+			}
+			alert(containerwidth);*/
+			$("#id4ccanvas").attr("width",containerwidth);
+			var pl = parseInt(containerwidth) - 60;
+			$("#idyaxisdiv").css("margin-left",pl+"px");
+		
+			 pdataset = window.parent.document.getElementById("4cdataset").value;
+			 presolution = window.parent.document.getElementById("4cbin").value;
+			 ploc = window.parent.document.getElementById("4cpos").value;
+			 start_bin = window.parent.document.getElementById("4cstartbin").value;
+			 expandRegion = parseInt(presolution)*20; 
+			 
+			 
+			 
+			 if(pdataset.indexOf("GSE18199") > -1 ){
+				$("#idpaper").html("Virtual 4C constructed <b> "+pdataset+"</b> is from \"Comprehensive mapping of long-range interactions reveals folding principles of the human genome. \" <a  style=\"color:blue;\" href=\"http://www.ncbi.nlm.nih.gov/pubmed/19815776\" target=\"_blank\">PMID</a>");
+					
+			}else if (pdataset.indexOf("GSE35156") > -1 ){
+				$("#idpaper").html("Virtual 4C constructed <b> "+pdataset+"</b> is from \"Topological domains in mammalian genomes identified by analysis of chromatin interactions. \" <a style=\"color:blue;\" href=\"http://www.ncbi.nlm.nih.gov/pubmed/22495300\" target=\"_blank\">PMID</a>");
+						
+			}else if(pdataset.indexOf("GSE63525") > -1 ){
+				$("#idpaper").html("Virtual 4C constructed <b> "+pdataset+"</b> is from \" A 3D map of the human genome at kilobase resolution reveals principles of chromatin looping. \" <a style=\"color:blue;\" href=\"http://www.ncbi.nlm.nih.gov/pubmed/25497547\" target=\"_blank\">PMID</a>");
+			}else {
+				$("#idpaper").html("");
+				
+			}
+		
+
+			var canvastt = document.getElementById("id4ccanvas");
+			var ctxtt = canvastt.getContext('2d');	
+			$("#idtext").html("");
+			ctxtt.clearRect(0, 0, canvastt.width, canvastt.height);
+			canvastt.addEventListener("mousemove",extend_canvas_mouse_move1,false);
+			
+			
+			$("#idembed4cdataset").val(pdataset);
+			$("#idembed4cbin").val(presolution);
+			$("#idembed4cpos").val(ploc);
+			$("#idembed4cstartbin").val(start_bin);
+			$("#idembed4cexpandStartRegion").val(pos_start);
+			$("#idembed4cexpandEndRegion").val(pos_end);
+			$("#id4cnote").html("Click \"show\" button to display virutal 4C plot");
+			draw4cplotfunc1(pdataset,presolution,ploc,pos_start,pos_end,start_bin);	
+			 
+			 
+		}else{ // only genome browser,open a dialog
+			$("#id4cnote").html("Click \"Virtual 4C\" button in navigation bar to active virutal 4C plot");
+			var htmltext="<table cellpadding=\"5\" cellspacing=\"0\" style=\"margin-top:5px; font-size:13px;\"><tbody><tr><td width=\"230\"><b>Organism</b></td></tr>";
+			htmltext += "<tr><td><select id=\"id4orga\" style=\"width:120px;\" onchange=\"showCell()\"><option value=\"hg18\">Human (hg18)</option><option value=\"hg19\">Human (hg19)</option></select></td></tr>";
+					  
+			htmltext += "<tr><td><b>Dataset</b></td></tr><tr><td><select style=\"width:200px;\" id=\"id4dataset\" onchange=\"showDataset()\" ><option value='GSE18199_GM06690' selected='selected'>GSE18199_GM06690</option><option value='GSE18199_K562'>GSE18199_K562</option><option value='GSE35156_IMR90'>GSE35156_IMR90</option><option value='GSE35156_IMR90'>GSE35156_IMR90</option></select></td></tr>";
+			htmltext += "<tr><td><b>Resolution Size</b></td></tr><tr><td><select id=\"id4resolution\" style=\"width:80px;\"><option value='1000000'>1mb</option><option value='100000'>100kb</option></select></td></tr>";
+			htmltext += "<tr><td><b>Position</b><span style=\"color:red;\">*</span></td></tr><tr><td><input type=\"text\" id=\"id4position\" value=\""+p_pos+"\" style=\"width:120px;\" /></td></tr>";
+			htmltext += "<tr><td><b>View region</b></td></tr><tr><td>Start<input type=\"text\" id=\"id4start\" value=\""+pos_start+"\" style=\"width:120px;\"></td></tr><tr><td>End<input type=\"text\" id=\"id4end\" value=\""+pos_end+"\" style=\"width:120px;\"></td></tr>";	  
+				
+					
+				
+			
+			 $('<div></div>').appendTo('body')
+							  .html(htmltext)
+							  .dialog({
+								  modal: true, title: 'Virutal 4C parameters', zIndex: 10000, autoOpen: true,
+								  width: 'auto', resizable: false,						 
+								  close: function (event, ui) {
+									  //remove from cookie	
+										
+									
+									  
+									  $(this).remove();
+								  },
+								  buttons:{
+									  Ok: function(){
+									  
+										var containerwidth = $(document.body).width();
+										/*if(containerwidth.indexOf("px")>-1){
+											var idex = containerwidth.indexOf("px");
+											containerwidth = containerwidth.substring(0,idex);
+										}
+										alert(containerwidth);*/
+										$("#id4ccanvas").attr("width",containerwidth);
+										var pl = parseInt(containerwidth) - 60;
+										$("#idyaxisdiv").css("margin-left",pl+"px");
+									    pdataset = $("#id4dataset").val(); 
+										expandRegion = $("#id4expand").val(); 
+										presolution = $("#id4resolution").val(); 
+										ploc = $("#id4position").val(); 
+										pos_start = $("#id4start").val();
+										pos_end = $("#id4end").val();
+										
+										var urlconf =  getQueryString("data"); 
+										
+										start_bin = 0;
+										if(pdataset == urlconf ){
+											start_bin = getQueryString("sb"); 
+										}
+										$("#idembed4cdataset").val(pdataset);
+										$("#idembed4cbin").val(presolution);
+										$("#idembed4cpos").val(ploc);
+										$("#idembed4cstartbin").val(start_bin);
+										$("#idembed4cexpandStartRegion").val(pos_start);
+										$("#idembed4cexpandEndRegion").val(pos_end);
+									
+										 if(pdataset.indexOf("GSE18199") > -1 ){
+											$("#idpaper").html("Virtual 4C constructed <b> "+pdataset+"</b> is from \"Comprehensive mapping of long-range interactions reveals folding principles of the human genome. \" <a  style=\"color:blue;\" href=\"http://www.ncbi.nlm.nih.gov/pubmed/19815776\" target=\"_blank\">PMID</a>");
+												
+										}else if (pdataset.indexOf("GSE35156") > -1 ){
+											$("#idpaper").html("Virtual 4C constructed <b> "+pdataset+"</b> is from \"Topological domains in mammalian genomes identified by analysis of chromatin interactions. \" <a style=\"color:blue;\" href=\"http://www.ncbi.nlm.nih.gov/pubmed/22495300\" target=\"_blank\">PMID</a>");
+													
+										}else if(pdataset.indexOf("GSE63525") > -1 ){
+											$("#idpaper").html("Virtual 4C constructed <b> "+pdataset+"</b> is from \" A 3D map of the human genome at kilobase resolution reveals principles of chromatin looping. \" <a style=\"color:blue;\" href=\"http://www.ncbi.nlm.nih.gov/pubmed/25497547\" target=\"_blank\">PMID</a>");
+										}else {
+											$("#idpaper").html("");
+											
+										}
+									
+
+										var canvastt = document.getElementById("id4ccanvas");
+										var ctxtt = canvastt.getContext('2d');	
+										$("#idtext").html("");
+										ctxtt.clearRect(0, 0, canvastt.width, canvastt.height);
+										canvastt.addEventListener("mousemove",extend_canvas_mouse_move1,false);
+										
+										
+										draw4cplotfunc1(pdataset,presolution,ploc,pos_start,pos_end,start_bin);	
+									    $(this).remove();
+										
+									  },
+									  Cancel: function(){
+										$(this).dialog('close');
+									  }
+									  
+								  }
+							});
+
+		}
+	}
+		
+
+	function embedVirtual4CUpdate(){
+									var pdataset=	$("#idembed4cdataset").val();
+									var presolution=	$("#idembed4cbin").val();
+									var ploc= 	$("#idembed4cpos").val();
+									var start_bin=	$("#idembed4cstartbin").val();
+									var pos_start=	$("#idembed4cexpandStartRegion").val();
+									var pos_end=	$("#idembed4cexpandEndRegion").val();
+									
+										 if(pdataset.indexOf("GSE18199") > -1 ){
+											$("#idpaper").html("Virtual 4C constructed <b> "+pdataset+"</b> is from \"Comprehensive mapping of long-range interactions reveals folding principles of the human genome. \" <a  style=\"color:blue;\" href=\"http://www.ncbi.nlm.nih.gov/pubmed/19815776\" target=\"_blank\">PMID</a>");
+												
+										}else if (pdataset.indexOf("GSE35156") > -1 ){
+											$("#idpaper").html("Virtual 4C constructed <b> "+pdataset+"</b> is from \"Topological domains in mammalian genomes identified by analysis of chromatin interactions. \" <a style=\"color:blue;\" href=\"http://www.ncbi.nlm.nih.gov/pubmed/22495300\" target=\"_blank\">PMID</a>");
+													
+										}else if(pdataset.indexOf("GSE63525") > -1 ){
+											$("#idpaper").html("Virtual 4C constructed <b> "+pdataset+"</b> is from \" A 3D map of the human genome at kilobase resolution reveals principles of chromatin looping. \" <a style=\"color:blue;\" href=\"http://www.ncbi.nlm.nih.gov/pubmed/25497547\" target=\"_blank\">PMID</a>");
+										}else {
+											$("#idpaper").html("");
+											
+										}
+									
+
+										var canvastt = document.getElementById("id4ccanvas");
+										var ctxtt = canvastt.getContext('2d');	
+										$("#idtext").html("");
+										ctxtt.clearRect(0, 0, canvastt.width, canvastt.height);
+										canvastt.addEventListener("mousemove",extend_canvas_mouse_move1,false);
+										$("#id4cnote").html("Click \"show\" button to display virutal 4C plot");
+										
+										
+										draw4cplotfunc1(pdataset,presolution,ploc,pos_start,pos_end,start_bin);	
+	}
+	
+	
+	//search gene add by tangbx 2017.12.21
+	function addSearchGene(genename){
+	
+		//alert(genename);
+		var params={"organism":"hg19","param":genename,"pageNo":0,"pageSize":0,"totalCount":-1};
+		$.ajax({
+				url : '/circosweb/ajax/ajaxSearchGene.action',
+				type : 'post',
+				dataType : 'json',
+				data : params,
+				async: true,
+				success : function(data){
+				
+					if(data.genelist != null){
+						//show gene name
+						var geneobj = data.genelist[0];
+						if(geneobj!= null){
+							var genestart = geneobj.start;
+							genestart = parseInt(genestart) -20;
+							var geneend = geneobj.end;
+							geneend = parseInt(geneend) + 20;
+							var chrom = geneobj.chrom;
+							var loc = chrom+":"+genestart+".."+geneend;
+						//	alert(loc);
+							JBrowse.navigateTo(loc);	
+						}
+						
+					}	
+				}
+		});
+	}
+
+		
+    </script>
+
+  </head>
+
+  <body>
+	<table><tbody><tr><td><input id="idshowpbtn"  style="display:none;" type="button" value="update physical model" onclick="RefreshPhysical()" /><input type="hidden" id="idpos" value="0"  /></td></tr></tbody></table>
+	<div id="GenomeBrowser" style="height: 100%; width: 100%; padding: 0; border: 0;background-color:#ffffff;"></div>
+	<div id="4cplot-dialog" style="width: 100%; padding-top: 10px; padding-bottom:10px; border: 0;background-color:#ffffff;"> 
+	<div style="font-size:14px; font-weight:bold;padding-top:10px;padding-left:5px;"><img src="/circosweb/images/tabClose.png" onclick="closeVirtual4C()" />Virtual 4C&nbsp;<input type="button" value="Show" onclick="showPanelVirtual4C()"/>&nbsp;<input type="button" value="Hide" onclick="hideVirutal4C()"/><span id="id4cnote" style="padding-left:10px;font-weight:normal; ">Click \"show\" button to display virutal 4C plot</span> </div>
+	<div id="virtualpanel" style="height: 450px; width:100%; display:none;">
+	<div id="idpaper" style="font-size:12px;padding-bottom:5px;padding-left:10px;"></div>
+	<div style="margin-left:0px"><span id="id4cwait" style="display:none;"><img src="/circosweb/images/ajax-loader.gif" /></span></div>
+	<div id="idtext" style="width:100%;  padding-left:20px;"></div>
+	<div id="id4cplot" style="width:100%; height:400px; position:relative; z-index:8000;  ">
+			<canvas id="id4ccanvas" width="1200" height="400" ></canvas>
+	</div>
+	<div id="idyaxisdiv" style="width:60px; height:400px; position:relative; z-index:7; margin-top:-400px; ">
+				<canvas id="idyaix" width="60" height="400" ></canvas>
+	</div>
+	
+	<div id="idalignline" style="width:6px; height:400px; background-color:yellow; opacity: 0.5; position:relative; z-index:8006;  margin-top:-400px; display:none;">
+		<div id="idanchor" style="width:100px;height:20px; padding-top:200px;">
+		</div>			
+	</div>
+	</div>
+	
+	
+	<input id="idembed4cdataset" type="hidden" />
+	<input  id="idembed4cbin" type="hidden"/>
+	<input id="idembed4cpos" type="hidden"/>
+	<input id="idembed4cstartbin" type="hidden"/>
+	<input id="idembed4cexpandRegion" type="hidden"/>
+	<input id="idembed4cexpandStartRegion" type="hidden"/>
+	<input id="idembed4cexpandEndRegion" type="hidden"/>
+	</div>
+	
+
+    <div style="display: none">JBrowseDefaultMainPage</div>
+	<script type="text/javascript" src="/circosweb/js/virtual4c/4cplot.js"></script>
+
+  </body>
+</html>

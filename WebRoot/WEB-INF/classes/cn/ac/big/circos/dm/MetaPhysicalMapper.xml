@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ac.big.circos.metaphysical">
+	<resultMap id="MetaPhysicalMap" type="cn.ac.big.circos.po.MetaPhysicalBean">
+		<result property="metaId" column="meta_id" />
+		<result property="label" column="label" />
+		<result property="name" column="name" />
+		<result property="dataCategory" column="data_category" />
+		<result property="organism" column="organism" />
+		<result property="cell" column="cell" />
+		<result property="dataType" column="data_type" />
+		<result property="lab" column="lab" />
+		<result property="antibody" column="antibody" />
+		<result property="peaks" column="peaks" />
+		<result property="replicateNumber" column="replicate_number" />
+		<result property="fileType" column="file_type" />
+		<result property="dataMysqlTable" column="data mysql table" />
+		<result property="dataVisualizationType" column="data visualization type" />
+	</resultMap>
+	
+	<select id="selectGivenMetaPhysical" parameterType="java.util.Map" resultMap="MetaPhysicalMap">
+		 <![CDATA[select * from ${table} ]]> where 1=1
+		 <if test="datacategory != null ">
+		 	and data_category=#{datacategory}
+		 </if>
+	</select>
+	
+</mapper>

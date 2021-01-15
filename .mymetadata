@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="deltaar"
+  id="myeclipse.1521523752651"
+  context-root="/deltaar"
+  j2ee-spec="6.0"
+  archive="deltaar.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

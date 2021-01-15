@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ac.big.circos">
+	
+	
+	<resultMap id="MetaMap" type="cn.ac.bigd.deltaar.util.MetaBean">
+		<result property="label" column="label" />
+		<result property="name" column="name" />
+		<result property="data_category" column="data_category" />
+		<result property="organism" column="organism" />
+		<result property="cell" column="cell" />
+		<result property="data_type" column="data_type" />
+		<result property="lab" column="lab" />
+		<result property="antibody" column="antibody" />
+		<result property="peaks" column="peaks" />
+		<result property="replicate_number" column="replicate_number" />
+		<result property="fileType" column="file_type" />
+	</resultMap>
+	
+		<resultMap id="MetaCountMap" type="cn.ac.bigd.deltaar.util.CatalogItem">
+		<result property="count" column="count" />
+		<result property="name" column="name" />
+	</resultMap>
+	
+	
+	
+	
+	
+	<select id="selectMetaData" parameterType="java.util.Map" resultMap="MetaMap">
+		select * from ${table} where 1=1 
+		<if test="catalist != null">
+		 and data_category in (${catalist})
+		</if>
+		
+		<if test="celllist != null">
+			and cell in (${celllist})
+		</if>
+		
+		<if test="antilist != null">
+			and antibody in (${antilist})
+		</if>
+		
+		<if test="lablist != null">
+			and lab in (${lablist})
+		</if>
+		
+		<if test="datatypelist != null">
+			and data_type in (${datatypelist})
+		</if>
+		<if test="organism != null ">
+			and (organism=#{organism} or organism='unknown')
+		</if>
+	
+	</select>
+	
+		
+	<select id="selectMetaCount" parameterType="java.util.Map" resultMap="MetaCountMap">
+		select ${field} as name,count(*) as count from ${table} where 1=1 
+		<if test="catalist != null">
+		 and data_category in (${catalist})
+		</if>
+		
+		<if test="celllist != null">
+			and cell in (${celllist})
+		</if>
+		
+		<if test="antilist != null">
+			and antibody in (${antilist})
+		</if>
+		
+		<if test="lablist != null">
+			and lab in (${lablist})
+		</if>
+		
+		<if test="datatypelist != null">
+			and data_type in (${datatypelist})
+		</if>
+		
+		<if test="organism != null ">
+			and (organism=#{organism} or organism='unknown')
+		</if>
+		group by ${field}
+
+	</select>
+	
+	
+
+	
+
+	
+
+
+	
+	
+</mapper>

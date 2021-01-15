@@ -1,0 +1,15 @@
+Number of chromosomes: 1
+Input file: /share/disk1/work/bioinformatics/tangbx/visualization/download_data/pipeline/GSE63525_K562_combined/mogen_100000/11/chr11_100000.mogen.nm.txt
+Intra-chromosomal threshold: 0.03201350508186702
+Contact distance: 6.0
+Minimum distance: 0.2
+Maximum distance of 2 adjacent fragments: 1.5
+Maximum distance between any 2 fragments of the same chromosome: 50.0
+Learning rate: 0.001
+Maximum number of iteration for the optimization: 200000
+Weights to enforce contacts to be satisfied (POS_MAX_DIST_WEIGHT_FILE): /share/disk1/work/bioinformatics/tangbx/visualization/download_data/pipeline/GSE63525_K562_combined/mogen_100000/11/parameters/pos_max_dist_weight_11_100000.txt
+Weight to enfore minimum distance between fragments (POS_MIN_DIST_WEIGHT_FILE) : /share/disk1/work/bioinformatics/tangbx/visualization/download_data/pipeline/GSE63525_K562_combined/mogen_100000/11/parameters/pos_min_dist_weight_11_100000.txt
+Weight to enfore non-contacts to be satisfied (NEG_MIN_DIST_WEIGHT_FILE) : /share/disk1/work/bioinformatics/tangbx/visualization/download_data/pipeline/GSE63525_K562_combined/mogen_100000/11/parameters/neg_min_dist_weight_11_100000.txt
+Weight to enfore maximum distance between fragments (NEG_MAX_DIST_WEIGHT_FILE) : /share/disk1/work/bioinformatics/tangbx/visualization/download_data/pipeline/GSE63525_K562_combined/mogen_100000/11/parameters/neg_max_dist_weight_11_100000.txt
+
+1 structures generated in: 2.54 minutes 

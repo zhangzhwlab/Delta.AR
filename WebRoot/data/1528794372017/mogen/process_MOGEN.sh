@@ -1,0 +1,3 @@
+#!/bin/sh
+export PATH=$PATH:/share/backup2/deltabakcup/hic/scripts20160514
+nohup perl /share/backup2/deltabakcup/hic/scripts20160514/module_MOGEN.pl -pl /share/backup2/deltabakcup/hic/scripts20160514 -c 11 -obm /share/backup2/deltabakcup/circosweb2016/circosweb/download/11_50000.matrix -bin 50000 -o /share/backup2/deltabakcup/circosweb2016/circosweb//data/1528794372017/mogen -adist 1.5 -cdist 6.0 -pmdist 0.2 -nmdist 50 -lrate 0.01 -miterate 200000 -pmxdw 200.0 -pmindw 1.0 -nmindw 40.0 -nmxdw 1.0 -sb 90 -tpath /share/backup2/deltabakcup/circosweb2016/circosweb/ -jb 1528794372017 -sp hg19 > /share/backup2/deltabakcup/circosweb2016/circosweb//data/1528794372017/mogen/nohup.out 2>&1 &

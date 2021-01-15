@@ -1,0 +1,106 @@
+function callDeltaAR(){
+		
+			var mo=$("#idPhyModel").val();
+			var bin = $("#idBinsize").val();
+			var sep="hg19";
+			
+			var pos = $("#curpos").val();
+	
+			var index1 = pos.indexOf(":");
+			var index2 = pos.indexOf(".");
+			var chrtmp = pos.substring(0,index1);
+			
+			var pos_starttmp = pos.substring(index1+1,index2);
+			var pos_endtmp = pos.substring(index2+2,pos.length);
+			
+			pos_starttmp = parseInt(pos_starttmp);
+			
+			pos_endtmp = parseInt(pos_endtmp);
+			
+			var jumptrack="";
+			var jobid = getQueryString("conf");
+			
+			var t_html="";
+			//we need to add a pop up dialog to choose one of the selected tracks.
+			$("#trackid input[type='checkbox']").each(function(){
+					if ($(this).is(":checked")) {
+							var checkval = $(this).val();
+							var arrys = checkval.split(",");
+							
+							
+							
+							t_html += '<input class=\"re_select_track\" name=\"artrack\" type=\"radio\" value=\"'+checkval+'\"  />'+arrys[1]+"<br/>";
+					}
+			});
+			
+			var showhtml="";
+			
+			if(t_html ==null || t_html.length ==0 ){
+				showhtml='<div style=\"margin-top:10px;font-size:12px;\">Please select a track from Pysical View when using DeltaAR<br/>'+t_html+'</div>';
+			}else{
+				showhtml='<div style=\"margin-top:10px;font-size:12px;\">Please choose one track from the following tracks for DeltaAR<br/>'+t_html+'</div>';
+			}
+			
+		$('<div></div>').appendTo('body').html(showhtml).dialog({
+												 modal: true, title: 'warn', zIndex: 10000, autoOpen: true,
+													width: 'auto', 
+													resizable: false,						 
+													close: function (event, ui) {
+														/*$(".re_select_track:checkbox").each(function(){
+																	var checkval = $(this).val();
+																	var arrys = checkval.split(",");									
+																	$("#tlst_"+arrys[1]).attr("checked",false);
+																	$("#ctlst_"+arrys[1]).attr("checked",false);
+																	//delete from cookie
+																	deleteTrackFromCookie(arrys[1]);										
+																	
+															});*/
+														$(this).remove();
+													},
+													buttons: {
+														OK: function () {							
+																//I will check the selected track number. if everything is ok, then call
+														if(t_html.length > 0 ){
+														var checkval=$('input:radio[name="artrack"]:checked').val();
+														
+														var arrys = checkval.split(",");					
+														if(arrys[1].indexOf('3dmodel') < 0) {
+															
+															//jumptrack += arrys[1]+"," ;	
+															jumptrack = arrys[1];
+																				
+														}
+																			
+														
+														var track=jumptrack; //,
+			
+			
+														var threfurl="http://localhost:18080/deltaar/ar/changex.action?jobid="+jobid+"&modelname="+mo+"&binsize="+bin+"&species="+sep+"&track="+track+"&chrom="+chrtmp+"&start="+pos_starttmp+"&end="+pos_endtmp+"&hololensid=123";
+														
+														
+														var a = document.getElementById("hidengoto");
+														if(a == null){
+															a=document.createElement('a');
+															a.id="hidengoto";
+															document.body.appendChild(a);
+														}
+														
+														a.href = threfurl;
+														a.target="_blank";
+														
+														 document.getElementById("hidengoto").click();		
+														
+														}
+														$(this).remove();
+														
+															
+										},
+										Cancel: function () {
+											
+											$(this).remove();
+										}
+								   }
+										});
+			
+		}
+		
