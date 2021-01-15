@@ -15,10 +15,8 @@ Email: zhangzhihua@big.ac.cn
 
 We will start an example step by step to visualize data in Delta.AR.
 
-#####1. Get HoloLens Session ID
+##### 1. Get HoloLens Session ID
 
 To start visualization in Delta.AR, you need to lauch HoloLens and get a session id at first. An example Hololens id we get is 2737
 
-![image]()
-
-
+![image](https://github.com/zhangzhwlab/Delta.AR/tree/main/WebRoot/images/help/img/1.jpg)
