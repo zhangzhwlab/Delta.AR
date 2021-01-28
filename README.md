@@ -20,7 +20,7 @@ More help information can access http://deltaar.big.ac.cn/deltaar/pages/help/hel
 
 To start visualization in Delta.AR, you need to lauch HoloLens and get a session id at first. An example Hololens id we get is 2737
 
-![](https://github.com/zhangzhwlab/Delta.AR/blob/main/WebRoot/images/help/img/1.jpg)
+![](http://deltaar.big.ac.cn/deltaar/images/help/img/1.jpg)
 
 ##### 2. Open a session in Delta.AR
 
